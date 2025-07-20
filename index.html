@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="styles/standard.css">
 
     <script src="script.js" defer></script>
+    <script src="templates.js" defer></script>
 </head>
-<body>
+<body onload="getPokeApi()">
     <div id="spinner" class="spinner" style="display: none">
         <img src="./assets/icons/pokeball.png" alt="">
     </div>
@@ -26,21 +27,16 @@
         </div>
     </header>
     <main>
+        <div id="overlay" class="content">
+            
+        </div>
         <div class="content">
-            <div class="pokemon-small-cards">
-                <p id="poke-id">#1</p>
-                <h2 id="pokemon-name">Pikachu</h2>
-                <div>
-                    <div id="category">
-                    </div>
-                    <img src="./assets/icons/pokeball.png" alt="placeholder">
-                </div>
-            </div>
+            <button>Load more...</button>
         </div>
     </main>
     <footer>
         <div class="content">
-              Design by felicious, 2025.
+            © 2025. Design by <img src="./assets/icons/Felicious.png" alt="felicious logo">
         </div>
     </footer>
 </body>

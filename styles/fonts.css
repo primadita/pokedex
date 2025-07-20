@@ -28,3 +28,9 @@ h1{
     font-size: min(2.4rem, 3rem);
     color: rgb(65, 64, 64);
 }
+
+h2{
+    font-family: 'PressStart2P-Regular';
+    font-size: min(2rem, 2.4rem);
+    text-align: center;
+}

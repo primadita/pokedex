@@ -3,12 +3,12 @@ header{
   background: rgb(238, 237, 237);
   height: 10dvh;
   z-index: 3;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   .content{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1dvh 2rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     img{
       height: 8dvh;
     }
@@ -39,13 +39,50 @@ header{
 main{
   height: auto;
   min-height: calc(100dvh - 10dvh - 5dvh);
+  display: flex;
+  flex-direction: column;
+  .content{
+    padding: 2.5rem 3rem;
+  }
+}
+#overlay{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  .pokemon-small-cards{
+    /* border: 1px solid gray; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 2rem;
+    padding: 10px;
+    background: yellow;
+    width: 30rem;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div{
+      display: flex;
+      justify-content: space-around;
+      #abilities{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: center;
+        gap: 0.8rem;
+        .ability{
+          background: rgba(255, 255, 255, 0.6);
+          padding: 0.8rem 1.6rem;
+          border-radius: 2rem;
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        }
+      }
+      img{
+        width: 15rem;
+      }
+    }
+  }
 }
 
-.small-card{
-  border: 1px solid gray;
-  width: 15rem;
-  height: 12rem;
-}
 /* #endregion */
 
 /* #region SPINNER */
@@ -72,13 +109,16 @@ main{
 
 /* #region FOOTER */
 footer{
-  height: 5dvh;
+  height: 6dvh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 2;
   .content{
     display: flex;
     justify-content: center;
     align-items: center;
+    img{
+      height: 5dvh;
+    }
   }
 }
 /* #endregion */
