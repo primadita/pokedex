@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'PressStart2P-Regular';
+    src: url('../assets/fonts/PressStart2P-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Fredoka-Regular';
+    src: url('../assets/fonts/Fredoka-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Bungee-Regular';
+    src: url('../assets/fonts/Bungee-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Baloo2-Regular';
+    src: url('../assets/fonts/Baloo2-Regular.ttf');
+}
+
+body{
+    font-size: min(16px, 18px);
+    font-family: 'Baloo2-Regular';
+}
+
+h1{
+    font-family: 'PressStart2P-Regular';
+    font-size: min(2.4rem, 3rem);
+    color: rgb(65, 64, 64);
+}

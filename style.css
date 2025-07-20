@@ -1,0 +1,84 @@
+/* #region HEADER */
+header{
+  background: rgb(238, 237, 237);
+  height: 10dvh;
+  z-index: 3;
+  .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1dvh 2rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    img{
+      height: 8dvh;
+    }
+    #search-container{
+      display: flex;
+      align-items: center;
+      height: 6dvh;
+      border: 1px solid #cccccc;
+      border-radius: 25px;
+      padding: 8px;
+      gap: 8px;
+      img{
+        height: 4dvh;
+      }
+      input{
+        height: 8dvh;
+        border: none;
+        background: transparent;
+        font-family: 'baloo2-Regular';
+      }
+      
+    }
+  }
+}
+/* #endregion */
+
+/* #region MAIN */
+main{
+  height: auto;
+  min-height: calc(100dvh - 10dvh - 5dvh);
+}
+
+.small-card{
+  border: 1px solid gray;
+  width: 15rem;
+  height: 12rem;
+}
+/* #endregion */
+
+/* #region SPINNER */
+.spinner {
+  border: none;
+  width: 60px;
+  height: 60px;
+  background: #008080;
+  animation: boing 4s infinite;
+  margin: 50px auto;
+  img{
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@keyframes boing {
+  0% { top:-100px }
+  50% { top: 100px}
+  100% { top:-100px }
+}
+
+/* #endregion */
+
+/* #region FOOTER */
+footer{
+  height: 5dvh;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  z-index: 2;
+  .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* #endregion */
