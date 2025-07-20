@@ -23,3 +23,14 @@ footer {
     width: 100%;
     max-width: 1920px;
 }
+
+button{
+    cursor: pointer;
+    font-family: 'PressStart2P-Regular' ;
+    font-size: min(1.8rem, 2rem);
+    border-radius: 2rem;
+    border: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 2rem;
+    color: rgb(65, 64, 64);
+}
