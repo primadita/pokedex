@@ -5,8 +5,8 @@ function getOverlayTemplate(array, id){
             <h2 id="pokemon-name${id}">${array.results[id].name}</h2>
             <div>
                 <div id="types${id}" class="types">
-                    <div id="type1" class="type">ability1</div>
-                    <div id="type2" class="type">ability2</div>
+                    <div id="type1" class="type">type1</div>
+                    <div id="type2" class="type">type2</div>
                 </div>
                 <img id="overlay-img" src="./assets/icons/pokeball.png" alt="placeholder">
             </div>

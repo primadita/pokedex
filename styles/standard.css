@@ -9,6 +9,12 @@
 
 html{
     font-size: 10px;
+    @media (max-width: 780px) {
+        font-size: 9px;
+    }
+    @media (max-width: 350px) {
+        font-size: 8px;
+    }
 }
 
 header,
@@ -23,7 +29,12 @@ footer {
     width: 100%;
     max-width: 1920px;
 }
-
+.d-flex{
+    display: flex;
+}
+.d-none{
+    display: none;
+}
 button{
     cursor: pointer;
     font-family: 'PressStart2P-Regular' ;

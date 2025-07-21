@@ -18,8 +18,11 @@
     </div>
     <header>
         <div class="content">
-            <img src="./assets/icons/International_Pokémon_logo.svg.webp" alt="international pokemon logo">
-            <h1>Gotta catch'em all</h1>
+            <div class="title-slogan">
+                <img src="./assets/icons/International_Pokémon_logo.svg.webp" alt="international pokemon logo">
+                <h1>Gotta catch'em all</h1>
+            </div>
+            
             <div id="search-container">
                 <img src="./assets/icons/magnifier.png" alt="search for">
                 <input type="text" placeholder="Search pokemon">
@@ -27,12 +30,16 @@
         </div>
     </header>
     <main>
-        <div id="overlay" class="content">
-            
+        <div class="battlecard" class="d-flex d-none">
         </div>
-        <div id="loadmore-btn" class="content">
-            <button onclick="loadmore(nextUrl)">Load more...</button>
-        </div>
+        
+        <section id="overview">
+            <div id="overlay" class="content">
+            </div>
+            <div id="loadmore-btn">
+                <button onclick="loadmore(nextUrl)">Load more...</button>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="content">
