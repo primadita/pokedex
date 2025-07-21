@@ -16,7 +16,6 @@ async function getPokeApi() {
   } catch(error){
     console.error(error);
   }
-  
 }
 
 function renderOverlay(array){
@@ -47,6 +46,10 @@ async function loadmore(url){
 // #endregion
 
 // #region BATTLE CARD
+function toggleBattleCard(){
+  const battlecardBgRef = document.getElementById("battlecard-bg");
+  battlecardBgRef.classList.toggle("d-none");
+}
 // #endregion
 
 // #region SPINNER

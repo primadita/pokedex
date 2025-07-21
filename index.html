@@ -22,7 +22,6 @@
                 <img src="./assets/icons/International_Pokémon_logo.svg.webp" alt="international pokemon logo">
                 <h1>Gotta catch'em all</h1>
             </div>
-            
             <div id="search-container">
                 <img src="./assets/icons/magnifier.png" alt="search for">
                 <input type="text" placeholder="Search pokemon">
@@ -30,7 +29,8 @@
         </div>
     </header>
     <main>
-        <div class="battlecard" class="d-flex d-none">
+        <div id="battlecard-bg" class="d-flex d-none" onclick="toggleBattleCard()">
+            <div id="battlecard"></div>
         </div>
         
         <section id="overview">
