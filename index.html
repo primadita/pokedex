@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/standard.css">
-
+    <script src="db.js" defer></script>
     <script src="script.js" defer></script>
     <script src="templates.js" defer></script>
 </head>
-<body onload="getPokeApi()">
+<body onload="getPokeApi(limit, offset)">
     <div id="spinner" class="spinner" style="display: none">
         <img src="./assets/icons/pokeball.png" alt="">
     </div>
@@ -37,7 +37,7 @@
             <div id="overlay" class="content">
             </div>
             <div id="loadmore-btn">
-                <button onclick="loadmore(nextUrl)">Load more...</button>
+                <button onclick="getPokeApi(limit, offset)">Load more...</button>
             </div>
         </section>
     </main>
