@@ -1,12 +1,16 @@
+// #region GLOBAL VARIABLE
+let nextUrl = "";
+const overlayRef = document.getElementById("overlay");
+overlayRef.innerHTML = "";
+// #endregion
+
+// #region OVERLAY
 async function getPokeApi() {
   try{
     let response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     let responseAsJson = await response.json();
-    console.log(responseAsJson);
-    console.log(responseAsJson.results[0]); 
-    console.log(responseAsJson.results.length);
-    console.log(responseAsJson.results[0].name); 
-
+    nextUrl = responseAsJson.next;
+ 
     // showSpinner();
     renderOverlay(responseAsJson); 
   } catch(error){
@@ -16,8 +20,7 @@ async function getPokeApi() {
 }
 
 function renderOverlay(array){
-  const overlayRef = document.getElementById("overlay");
-  overlayRef.innerHTML = "";
+  
   // overlayRef.innerHTML += getOverlayTemplate(id);
   // const nameRef = document.getElementById("pokemon-name");
   // const idRef = document.getElementById("poke-id");
@@ -30,6 +33,23 @@ function renderOverlay(array){
   }
 }
 
+async function loadmore(url){
+  try{
+    let responseLoadMore = await fetch(url);
+    let responseLoadMoreAsJson = await responseLoadMore.json();
+    nextUrl = responseLoadMoreAsJson.next;
+    console.log(nextUrl);
+    renderOverlay(responseLoadMoreAsJson);
+  } catch(error){
+    console.error(error);
+  }
+}
+// #endregion
+
+// #region BATTLE CARD
+// #endregion
+
+// #region SPINNER
 // Spinner anzeigen
 function showSpinner() {
   document.getElementById("spinner").style.display = "block";
@@ -40,6 +60,8 @@ function hideSpinner() {
   document.getElementById("spinner").style.display = "none";
 }
 
-// to do: function for spinner
+// TO DO: function for spinner
+// TO DO: spinner in der Funktionen einbauen
 
+// #endregion
 
