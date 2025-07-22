@@ -103,7 +103,7 @@ function giveOverviewNewValue(id){
     const typesRef = document.getElementById("types" + id);
     typesRef.innerHTML = "";
     for (let k = 0; k < pokemonData[id].types.length; k++){
-      typesRef.innerHTML += `<div id="type${k}-${id}" class="type">${pokemonData[id].types[k]}</div>`
+      typesRef.innerHTML += getTypeTemplate(k, id);
     }
     const imgRef = document.getElementById("overlay-img" + id);
     imgRef.src = pokemonData[id].imgDefault;

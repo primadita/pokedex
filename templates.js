@@ -11,3 +11,7 @@ function getOverlayTemplate(array, id){
         </div>
     `
 }
+
+function getTypeTemplate(index, pokemonId){
+    return `<div id="type${index}-${pokemonId}" class="type">${pokemonData[pokemonId].types[index]}</div>`
+}
