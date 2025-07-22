@@ -34,3 +34,6 @@ h2{
     font-size: min(2rem, 2.4rem);
     text-align: center;
 }
+h3{
+    text-align: right;
+}
