@@ -16,33 +16,34 @@ async function getPokeApi(limit, offset) {
   try{
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     let responseAsJson = await response.json();
-    let startId = offset + 1;
-    let endId = offset + limit;
+    let startId = offset;
+    let endId = offset + limit - 1;
     if (endId > maxLimit){
       endId = maxLimit;
     }
-    offset = endId;
     
-    console.log(responseAsJson);
+    
+    // console.log(responseAsJson);
     // nextUrl = responseAsJson.next;
     // showSpinner();
     renderOverlay(startId, endId, responseAsJson); 
+    return offset = endId + 1;
   } catch(error){
     console.error(error);
   }
 }
 
 function renderOverlay(startId, endId, array){
-  
-  // overlayRef.innerHTML += getOverlayTemplate(id);
-  // const nameRef = document.getElementById("pokemon-name");
-  // const idRef = document.getElementById("poke-id");
-  // const abilitiesRef = document.getElementById("abilities");
-  // const imgRef = document.getElementById("overlay-img");
-  
   for (let id = startId; id <= endId; id++){
-    // getEachPokemonData(id);
     overlayRef.innerHTML += getOverlayTemplate(array, id);
+    getEachPokemonData(id + 1).then(
+      (result) => {
+        // console.log(pokemonData);
+        giveOverviewNewValue(id);
+      }
+    ).catch((error) => {
+      console.error(error);
+    });
   }
 }
 
@@ -91,6 +92,26 @@ async function getEachPokemonData(index){
   
 }
 
+function giveOverviewNewValue(id){
+  // for (let id = startId; id <= endId; id++){
+    const smallCardRef = document.getElementById("pokemon-overview" + id);
+    smallCardRef.classList.add(pokemonData[id].getBackgroundColor());
+
+    const idRef = document.getElementById("poke-id" + id);
+    idRef.innerHTML = "#" + pokemonData[id].id;
+    
+    const typesRef = document.getElementById("types" + id);
+    typesRef.innerHTML = "";
+    for (let k = 0; k < pokemonData[id].types.length; k++){
+      typesRef.innerHTML += `<div id="type${k}-${id}" class="type">${pokemonData[id].types[k]}</div>`
+    }
+    const imgRef = document.getElementById("overlay-img" + id);
+    imgRef.src = pokemonData[id].imgDefault;
+}
+
+async function loadmore(){
+  offset = await getPokeApi(limit, offset);
+}
 // #endregion
 
 // #region BATTLE CARD
@@ -116,3 +137,5 @@ function hideSpinner() {
 
 // #endregion
 
+// #region Testing
+// giveOverviewNewValue(1, 20);

@@ -14,6 +14,7 @@ class Pokemon{
     growthRate;
     basestats;
     evolution;
+    bgClass;
     // #endregion
 
     constructor({pName, 
@@ -45,6 +46,7 @@ class Pokemon{
         this.basestats = pBaseStats;
         this.getGenerationNumber();
         this.replaceText();
+        // this.getBackgroundColor();
     }
 
     // #region Methods
@@ -61,11 +63,63 @@ class Pokemon{
     }
 
     getBackgroundColor(){
-        switch (this.color){
-            case "red":
+        switch (this.types[0]){
+            case "normal":
+                this.bgClass = "normal";
                 break;
-
+            case "fire":
+                this.bgClass = "fire";
+                break;
+            case "water":
+                this.bgClass = "water";
+                break;
+            case "electric":
+                this.bgClass = "electric";
+                break;
+            case "grass":
+                this.bgClass = "grass";
+                break;
+            case "ice":
+                this.bgClass = "ice";
+                break;
+            case "fighting":
+                this.bgClass = "fighting";
+                break;
+            case "poison":
+                this.bgClass = "poison";
+                break;
+            case "ground":
+                this.bgClass = "ground";
+                break;
+            case "flying":
+                this.bgClass = "flying";
+                break;
+            case "psychic":
+                this.bgClass = "psychic";
+                break;
+            case "bug":
+                this.bgClass = "bug";
+                break;
+            case "rock":
+                this.bgClass = "rock";
+                break;
+            case "ghost":
+                this.bgClass = "ghost";
+                break;
+            case "dragon":
+                this.bgClass = "dragon";
+                break;
+            case "dark":
+                this.bgClass = "dark";
+                break;
+            case "steel":
+                this.bgClass = "steel";
+                break;
+            case "fairy":
+                this.bgClass = "fairy";
+                break;
         }
+        return this.bgClass;
     }
 
     
