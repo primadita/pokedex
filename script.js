@@ -118,9 +118,26 @@ async function loadmore(){
 // #endregion
 
 // #region BATTLE CARD
-function toggleBattleCard(){
-  const battlecardBgRef = document.getElementById("battlecard-bg");
-  battlecardBgRef.classList.toggle("d-none");
+function toggleBattleCard(index){
+  const battleCardBgRef = document.getElementById("battlecard-bg");
+  battleCardBgRef.classList.toggle("d-none");
+
+
+  const battleCardRef = document.getElementById("battlecard");
+
+  battleCardRef.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}
+
+function updateBattleCard(index){
+
+}
+
+
+
+function switchTab(destinationSection){
+  document.getElementById(destinationSection).classList.remove("d-none");
 }
 
 function renderBattleCard(){

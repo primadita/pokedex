@@ -1,6 +1,6 @@
 function getOverlayTemplate(array, id){
     return `
-        <div id="pokemon-overview${id}" class="pokemon-small-cards" onclick="toggleBattleCard()">
+        <div id="pokemon-overview${id}" class="pokemon-small-cards" onclick="toggleBattleCard(${id})">
             <h3 id="poke-id${id}">#id</h3>
             <h2 id="pokemon-name${id}">${array.results[id].name}</h2>
             <div>

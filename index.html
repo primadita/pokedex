@@ -46,12 +46,12 @@
                     <div id="info">
                         <img src="./assets/icons/pokeball.png" alt="">
                         <div id="tab">
-                            <a href="#about">About</a>
-                            <a href="#specification">Specification</a>
-                            <a href="#basestats">Base Stats</a>
+                            <a href="#about" onclick="switchTab('about')">About</a>
+                            <a href="#specification" onclick="switchTab('specification')">Specification</a>
+                            <a href="#basestats" onclick="switchTab('basestats')">Base Stats</a>
                         </div>
-                        <section id="about" class="d-none">This is my pokemon description</section>
-                        <section id="specification" class="d-none">
+                        <section id="about" class="d-flex d-none">This is my pokemon description</section>
+                        <section id="specification" class="d-flex d-none">
                             <table>
                                 <tr>
                                     <td>Height:</td>
@@ -79,7 +79,7 @@
                                 </tr>
                             </table>
                         </section>
-                        <section id="basestats" class="d-flex">
+                        <section id="basestats" class="d-flex d-none">
                             <table>
                                 <tr>
                                 <td>HP</td>
