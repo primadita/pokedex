@@ -18,6 +18,7 @@ async function getPokeApi(limit, offset) {
     let responseAsJson = await response.json();
     let startId = offset;
     let endId = offset + limit - 1;
+   
     if (endId > maxLimit){
       endId = maxLimit;
     }
@@ -27,7 +28,8 @@ async function getPokeApi(limit, offset) {
     // nextUrl = responseAsJson.next;
     // showSpinner();
     renderOverlay(startId, endId, responseAsJson); 
-    return offset = endId + 1;
+    offset = endId + 1;
+    return offset;
   } catch(error){
     console.error(error);
   }
@@ -85,6 +87,7 @@ async function getEachPokemonData(index){
     });
     
     pokemonData.push(pokemon);
+    rende
 
   } catch(error){
     console.error;
@@ -118,6 +121,10 @@ async function loadmore(){
 function toggleBattleCard(){
   const battlecardBgRef = document.getElementById("battlecard-bg");
   battlecardBgRef.classList.toggle("d-none");
+}
+
+function renderBattleCard(){
+
 }
 // #endregion
 

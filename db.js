@@ -46,6 +46,7 @@ class Pokemon{
         this.basestats = pBaseStats;
         this.getGenerationNumber();
         this.replaceText();
+        this.getCorrectHeight();
         // this.getBackgroundColor();
     }
 
@@ -60,6 +61,10 @@ class Pokemon{
         this.description = this.description.replace('\n', '');
         this.description = this.description.replace('\f', '');
         return this.description;
+    }
+    getCorrectHeight(){
+        this.height = Number(this.height) * 10;
+        return this.height;
     }
 
     getBackgroundColor(){
