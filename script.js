@@ -3,7 +3,7 @@ let pokemonData = [];
 let apiStartId = 1;
 let apiNextId;
 const overlayRef = document.getElementById("overlay");
-const battleCardRef = document.getElementById("battlecard");
+const battleCardBgRef = document.getElementById("battlecard-bg");
 // #endregion
 
 // #region OVERLAY
@@ -70,9 +70,8 @@ function renderSmallCard(array, arrayId){
 }
 
 function setBackgroundColor(elementId, array, arrayId){
-  const smallCardRef = document.getElementById(elementId + arrayId);
-  smallCardRef.classList.add(array[arrayId].getBackgroundColor());
-  // battleCardRef.classList.add(array[arrayId].getBackgroundColor());
+  const elementRef = document.getElementById(elementId + arrayId);
+  elementRef.classList.add(array[arrayId].getBackgroundColor());
 }
 
 function renderTypesOnOverlay(array, arrayId){
@@ -92,28 +91,68 @@ function renderOverlay(array, arrayId, elementId){
 
 // #region BATTLE CARD
 function toggleBattleCard(index){
-  const battleCardBgRef = document.getElementById("battlecard-bg");
   battleCardBgRef.classList.toggle("d-none");
-  battleCardBgRef.innerHTML = getBattleCard();
+  battleCardBgRef.innerHTML = getBattleCard(index, pokemonData);
+  setBackgroundColor("battlecard", pokemonData, index);
+  renderTypesOnBattleCard(pokemonData, index);
 
+  const battleCardRef = document.getElementById("battlecard" + index);
   battleCardRef.addEventListener("click", (event) => {
     event.stopPropagation();
   });
 }
 
-function updateBattleCard(index){
-
-}
-
-
-
-function switchTab(destinationSection){
-  document.getElementById(destinationSection).classList.remove("d-none");
+function renderTypesOnBattleCard(array, arrayId){
+  const typesRef = document.getElementById("types-on-battlecard");
+  typesRef.innerHTML = "";
+  for (let j = 0; j < array[arrayId].types.length; j++){
+    typesRef.innerHTML += getTypeTemplate(j, arrayId, array);
+  }
 }
 
 function renderBattleCard(){
 
 }
+function updateBattleCard(index){
+  battleCardBgRef.innerHTML = getBattleCard(index, pokemonData);
+  setBackgroundColor("battlecard", pokemonData, index);
+  renderTypesOnBattleCard(pokemonData, index);
+
+  const battleCardRef = document.getElementById("battlecard" + index);
+  battleCardRef.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  // TO DO: wenn index = 0 erreicht, passiert halt einfach nix
+}
+
+function forwardBattleCard(index){
+  if (index < pokemonData.length - 1){
+    updateBattleCard(index + 1);
+  }
+}
+
+function backwardBattleCard(index){
+  if (index - 1 >= 0){
+    updateBattleCard(index - 1);
+  }
+  
+}
+
+function switchTab(destinationSection){
+  tabs = ["about", "specification", "basestats"];
+
+  for (let i = 0; i < tabs.length; i++){
+    document.getElementById(tabs[i]).classList.add("d-none");
+    document.getElementById(tabs[i] + "-tab").classList.remove("active-tab");
+    if (tabs[i] == destinationSection){
+      document.getElementById(tabs[i]).classList.remove("d-none");
+      document.getElementById(tabs[i] + "-tab").classList.add("active-tab");
+    }
+  }
+  document.getElementById(destinationSection).classList.remove("d-none");
+}
+
 // #endregion
 
 // #region SPINNER
