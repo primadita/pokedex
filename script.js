@@ -131,7 +131,7 @@ function hideSpinner() {
 // #region SEARCH FUNCTION
 function searchPokemon(){
   const searchRef = document.getElementById("search-input");
-  inputValue = searchRef.value;
+  inputValue = searchRef.value.toLowerCase();
 
   if(inputValue.length >= 3){
     const results = pokemonData.filter(pokemon => pokemon.name.includes(inputValue));
@@ -152,7 +152,6 @@ function searchPokemon(){
       renderOverlay(pokemonData, pokeId, "pokemon-overview");
     }
   }
-
 }
 
       

@@ -47,7 +47,6 @@ class Pokemon{
         this.getGenerationNumber();
         this.replaceText();
         this.getCorrectHeight();
-        // this.getBackgroundColor();
     }
 
     // #region Methods
@@ -126,8 +125,6 @@ class Pokemon{
         }
         return this.bgClass;
     }
-
-    
     // #endregion
 
 }
