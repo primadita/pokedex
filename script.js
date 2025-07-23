@@ -99,7 +99,12 @@ function toggleBattleCard(index, array) {
   battleCardBgRef.classList.toggle("d-none");
   renderBattleCard(index, array);
 
-  document.body.classList.add("no-vertical-scroll");
+  document.body.classList.toggle("no-vertical-scroll");
+}
+
+function toggleOverview(){
+  battleCardBgRef.classList.toggle("d-none");
+  document.body.classList.toggle("no-vertical-scroll");
 }
 
 function renderTypesOnBattleCard(array, arrayId) {
