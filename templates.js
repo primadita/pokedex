@@ -1,6 +1,6 @@
 function getOverlayTemplate(array, id) {
   return `
-        <div id="pokemon-overview${id}" class="pokemon-small-cards" onclick="toggleBattleCard(${id})">
+        <div id="pokemon-overview${id}" class="pokemon-small-cards" onclick="toggleBattleCard(${id}, pokemonData)">
             <h3 id="poke-id${id}">#${array[id].id}</h3>
             <h2 id="pokemon-name${id}">${array[id].name}</h2>
             <div>
@@ -23,11 +23,11 @@ function showNoResultMessage() {
 function getBattleCard(arrayId, array) {
   return `
     <div id="battlecard${arrayId}" class="battlecard">
-        <img src="./assets/icons/pokeball-white.png" alt="">
+        <img src="./assets/icons/pokeball-white-half.png" alt="">
         <div id="pokemon-data">
             <div>
-                <button id="backward-btn${arrayId}" class="forward-backward-btn" onclick="backwardBattleCard(${arrayId})"><</button>
-                <button id="forward-btn${arrayId}" class="forward-backward-btn" onclick="forwardBattleCard(${arrayId})">></button>
+                <button id="backward-btn${arrayId}" class="forward-backward-btn" onclick="backwardBattleCard(${arrayId}, pokemonData)"><</button>
+                <button id="forward-btn${arrayId}" class="forward-backward-btn" onclick="forwardBattleCard(${arrayId}, pokemonData)">></button>
             </div>
             <div id="types-on-battlecard" class="types">
             </div>
