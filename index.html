@@ -13,16 +13,15 @@
     <script src="templates.js" defer></script>
 </head>
 <body onload="loadPokemons(apiStartId, pokemonData)">
-<!-- <body> -->
-
+    <!-- #region SPINNER -->
     <div id="spinner" class="spinner" style="display: none">
-    <!-- <div id="spinner" class="spinner"> -->
         <div class="spinner-animation">
             <img src="./assets/icons/pokeball.png" alt="">
         </div>
-        
         <h2>Loading ...</h2>
     </div>
+    <!-- #endregion -->
+    <!-- #region HEADER -->
     <header>
         <div class="content">
             <div class="title-slogan">
@@ -31,11 +30,13 @@
             </div>
             <div id="search-container">
                 <img src="./assets/icons/magnifier.png" alt="search for">
-                <input type="text" placeholder="Search pokemon">
+                <input type="text" id="search-input" placeholder="Search pokemon" onkeyup="searchPokemon()">
             </div>
         </div>
     </header>
+    <!-- #endregion -->
     <main>
+        <!-- #region BATTLE CARD -->
         <div id="battlecard-bg" class="d-flex d-none" onclick="toggleBattleCard()">
             <div id="battlecard" class="psychic">
                 <img src="./assets/icons/pokeball-white.png" alt="">
@@ -121,11 +122,11 @@
                             </table>
                         </section>
                     </div>
-                    
                 </div>
             </div>
         </div>
-        
+        <!-- #endregion -->
+        <!-- #region SMALL CARD/ OVERVIEW -->
         <section id="overview">
             <div id="overlay" class="content">
             </div>
@@ -133,6 +134,7 @@
                 <button onclick="loadPokemons(apiNextId, pokemonData)">Load more...</button>
             </div>
         </section>
+        <!-- #endregion -->
     </main>
     <footer>
         <div class="content">

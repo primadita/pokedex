@@ -30,10 +30,12 @@ header{
         height: 4dvh;
       }
       input{
-        height: 8dvh;
+        height: 6dvh;
         border: none;
+        width: calc(250px - 4dvh - 8px - 8px);
         background: transparent;
         font-family: 'baloo2-Regular';
+        font-size: min(1.8rem, 2rem);
       } 
     }
   }
@@ -72,6 +74,11 @@ header{
     }
   }
 }
+#noresults{
+  padding: 3rem;
+  font-size: medium;
+  color: rgb(165, 35, 6);
+}
 /* #endregion */
 
 /* #region MAIN */
@@ -102,9 +109,6 @@ main{
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      /* h3{
-        text-align: right;
-      } */
       div{
         display: flex;
         justify-content: space-around;
@@ -113,12 +117,6 @@ main{
           flex-direction: column;
           justify-content: center;
           gap: 0.8rem;
-          /* .type{
-            background: rgba(255, 255, 255, 0.6);
-            padding: 0.8rem 1.6rem;
-            border-radius: 2rem;
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          } */
         }
         img{
           width: 15rem;
@@ -191,7 +189,6 @@ main{
           font-size: x-large;
           font-family: 'Baloo2-Regular';
           border: 1px solid white;
-          /* text-align: center; */
           display: flex;
           justify-content: center;
           align-items: center;
@@ -290,7 +287,6 @@ main{
           }
         }
       }
-
     }
   }
 }
@@ -400,3 +396,4 @@ footer{
 .fairy{
   background: #d685ad;
 }
+/* #endregion */

@@ -15,3 +15,7 @@ function getOverlayTemplate(array, id){
 function getTypeTemplate(typeId, arrayId, array){
     return `<div id="type${typeId}-${arrayId}" class="type">${array[arrayId].types[typeId]}</div>`
 }
+
+function showNoResultMessage(){
+    return `<h2 id="noresults"> No pokemon is found! </h2>`
+}

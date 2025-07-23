@@ -55,8 +55,8 @@ async function loadPokemons(apiStartId, destinationArray){
     await getEachPokemonData(id).then(
       (result) => {
         renderOverlay(destinationArray, id - 1);
-        setBackgroundColor(destinationArray, id - 1);
-        renderTypesOnOverlay(destinationArray, id - 1);
+        // setBackgroundColor(destinationArray, id - 1);
+        // renderTypesOnOverlay(destinationArray, id - 1);
         return apiNextId;
       } 
     ).catch((error) => {
@@ -66,7 +66,7 @@ async function loadPokemons(apiStartId, destinationArray){
   }
 }
 
-function renderOverlay(array, arrayId){
+function renderSmallCard(array, arrayId){
   overlayRef.innerHTML += getOverlayTemplate(array, arrayId);
 }
 
@@ -81,6 +81,12 @@ function renderTypesOnOverlay(array, arrayId){
   for (let j = 0; j < array[arrayId].types.length; j++){
     typesRef.innerHTML += getTypeTemplate(j, arrayId, array);
   }
+}
+
+function renderOverlay(array, arrayId){
+  renderSmallCard(array, arrayId);
+  setBackgroundColor(array, arrayId);
+  renderTypesOnOverlay(array, arrayId);
 }
 // #endregion
 
@@ -122,11 +128,36 @@ function showSpinner() {
 function hideSpinner() {
   document.getElementById("spinner").style.display = "none";
 }
-
-// TO DO: function for spinner
-// TO DO: spinner in der Funktionen einbauen
-
 // #endregion
 
+// #region SEARCH FUNCTION
+function searchPokemon(){
+  const searchRef = document.getElementById("search-input");
+  inputValue = searchRef.value;
+
+  if(inputValue.length >= 3){
+    const results = pokemonData.filter(pokemon => pokemon.name.includes(inputValue));
+    console.log(results);
+    overlayRef.innerHTML = "";
+    for (let resultId = 0; resultId < results.length; resultId++){
+      renderOverlay(results, resultId);
+    }
+    // message, wenn kein Ergebnis
+    if (results.length == 0){
+      console.log("no pokemon is found");
+      overlayRef.innerHTML = showNoResultMessage(); 
+    }
+  } else {
+    // zurück zur Ursprünglichen, wenn input wieder leer ist
+    overlayRef.innerHTML = "";
+    for (let pokeId = 0; pokeId < pokemonData.length; pokeId++){
+      renderOverlay(pokemonData, pokeId);
+    }
+  }
+
+}
+
+      
+// #endregion
 // #region Testing
 // giveOverviewNewValue(1, 20);
