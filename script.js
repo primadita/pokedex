@@ -47,11 +47,12 @@ async function getEachPokemonData(index){
   }
 }
 
-function loadPokemons(apiStartId, destinationArray){
+async function loadPokemons(apiStartId, destinationArray){
   let apiEndId = apiStartId + 19;
+  showSpinner();
   apiNextId = apiEndId + 1;
   for (let id = apiStartId; id <= apiEndId; id++){
-    getEachPokemonData(id).then(
+    await getEachPokemonData(id).then(
       (result) => {
         renderOverlay(destinationArray, id - 1);
         setBackgroundColor(destinationArray, id - 1);
@@ -61,6 +62,7 @@ function loadPokemons(apiStartId, destinationArray){
     ).catch((error) => {
       console.error(error);
     });
+    hideSpinner();
   }
 }
 
@@ -113,7 +115,7 @@ function renderBattleCard(){
 // #region SPINNER
 // Spinner anzeigen
 function showSpinner() {
-  document.getElementById("spinner").style.display = "block";
+  document.getElementById("spinner").style.display = "flex";
 }
 
 // Spinner ausblenden
