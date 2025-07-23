@@ -1,54 +1,11 @@
 // #region GLOBAL VARIABLE
 let pokemonData = [];
-// const startUrl = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;
-const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`; 
-let offset = 0;
-const limit = 20;
-const maxLimit = 1025;
-
-let nextUrl = "";
+let apiStartId = 1;
+let apiNextId;
 const overlayRef = document.getElementById("overlay");
-overlayRef.innerHTML = "";
 // #endregion
 
 // #region OVERLAY
-async function getPokeApi(limit, offset) {
-  try{
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
-    let responseAsJson = await response.json();
-    let startId = offset;
-    let endId = offset + limit - 1;
-   
-    if (endId > maxLimit){
-      endId = maxLimit;
-    }
-    
-    
-    // console.log(responseAsJson);
-    // nextUrl = responseAsJson.next;
-    // showSpinner();
-    renderOverlay(startId, endId, responseAsJson); 
-    offset = endId + 1;
-    return offset;
-  } catch(error){
-    console.error(error);
-  }
-}
-
-function renderOverlay(startId, endId, array){
-  for (let id = startId; id <= endId; id++){
-    overlayRef.innerHTML += getOverlayTemplate(array, id);
-    getEachPokemonData(id + 1).then(
-      (result) => {
-        // console.log(pokemonData);
-        giveOverviewNewValue(id);
-      }
-    ).catch((error) => {
-      console.error(error);
-    });
-  }
-}
-
 async function getEachPokemonData(index){
   try{
     let dataOne = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}#`);
@@ -62,7 +19,6 @@ async function getEachPokemonData(index){
     for (let k = 0; k < dataOneAsJson.types.length; k++){
       pokeTypes.push(`${dataOneAsJson.types[k].type.name}`);
     };
-
     for (let j = 0; j < dataOneAsJson.abilities.length; j++){
       pokeAbilities.push(`${dataOneAsJson.abilities[j].ability.name}`);
     }
@@ -85,35 +41,44 @@ async function getEachPokemonData(index){
       pTypes: pokeTypes,
       pAbilities: pokeAbilities
     });
-    
     pokemonData.push(pokemon);
-    rende
-
   } catch(error){
     console.error;
   }
-  
 }
 
-function giveOverviewNewValue(id){
-  // for (let id = startId; id <= endId; id++){
-    const smallCardRef = document.getElementById("pokemon-overview" + id);
-    smallCardRef.classList.add(pokemonData[id].getBackgroundColor());
-
-    const idRef = document.getElementById("poke-id" + id);
-    idRef.innerHTML = "#" + pokemonData[id].id;
-    
-    const typesRef = document.getElementById("types" + id);
-    typesRef.innerHTML = "";
-    for (let k = 0; k < pokemonData[id].types.length; k++){
-      typesRef.innerHTML += getTypeTemplate(k, id);
-    }
-    const imgRef = document.getElementById("overlay-img" + id);
-    imgRef.src = pokemonData[id].imgDefault;
+function loadPokemons(apiStartId, destinationArray){
+  let apiEndId = apiStartId + 19;
+  apiNextId = apiEndId + 1;
+  for (let id = apiStartId; id <= apiEndId; id++){
+    getEachPokemonData(id).then(
+      (result) => {
+        renderOverlay(destinationArray, id - 1);
+        setBackgroundColor(destinationArray, id - 1);
+        renderTypesOnOverlay(destinationArray, id - 1);
+        return apiNextId;
+      } 
+    ).catch((error) => {
+      console.error(error);
+    });
+  }
 }
 
-async function loadmore(){
-  offset = await getPokeApi(limit, offset);
+function renderOverlay(array, arrayId){
+  overlayRef.innerHTML += getOverlayTemplate(array, arrayId);
+}
+
+function setBackgroundColor(array, arrayId){
+  const smallCardRef = document.getElementById("pokemon-overview" + arrayId);
+  smallCardRef.classList.add(array[arrayId].getBackgroundColor());
+}
+
+function renderTypesOnOverlay(array, arrayId){
+  const typesRef = document.getElementById("types" + arrayId);
+  typesRef.innerHTML = "";
+  for (let j = 0; j < array[arrayId].types.length; j++){
+    typesRef.innerHTML += getTypeTemplate(j, arrayId, array);
+  }
 }
 // #endregion
 

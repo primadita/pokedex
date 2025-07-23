@@ -1,17 +1,17 @@
 function getOverlayTemplate(array, id){
     return `
         <div id="pokemon-overview${id}" class="pokemon-small-cards" onclick="toggleBattleCard(${id})">
-            <h3 id="poke-id${id}">#id</h3>
-            <h2 id="pokemon-name${id}">${array.results[id].name}</h2>
+            <h3 id="poke-id${id}">#${array[id].id}</h3>
+            <h2 id="pokemon-name${id}">${array[id].name}</h2>
             <div>
                 <div id="types${id}" class="types">
                 </div>
-                <img id="overlay-img${id}" src="./assets/icons/pokeball.png" alt="placeholder">
+                <img id="overlay-img${id}" src="${array[id].imgDefault}" alt="Image of ${array[id].name}">
             </div>
         </div>
     `
 }
 
-function getTypeTemplate(index, pokemonId){
-    return `<div id="type${index}-${pokemonId}" class="type">${pokemonData[pokemonId].types[index]}</div>`
+function getTypeTemplate(typeId, arrayId, array){
+    return `<div id="type${typeId}-${arrayId}" class="type">${array[arrayId].types[typeId]}</div>`
 }
