@@ -3,6 +3,7 @@ let pokemonData = [];
 let apiStartId = 1;
 let apiNextId;
 const overlayRef = document.getElementById("overlay");
+const battleCardRef = document.getElementById("battlecard");
 // #endregion
 
 // #region OVERLAY
@@ -54,9 +55,7 @@ async function loadPokemons(apiStartId, destinationArray){
   for (let id = apiStartId; id <= apiEndId; id++){
     await getEachPokemonData(id).then(
       (result) => {
-        renderOverlay(destinationArray, id - 1);
-        // setBackgroundColor(destinationArray, id - 1);
-        // renderTypesOnOverlay(destinationArray, id - 1);
+        renderOverlay(destinationArray, id - 1, "pokemon-overview");
         return apiNextId;
       } 
     ).catch((error) => {
@@ -70,9 +69,10 @@ function renderSmallCard(array, arrayId){
   overlayRef.innerHTML += getOverlayTemplate(array, arrayId);
 }
 
-function setBackgroundColor(array, arrayId){
-  const smallCardRef = document.getElementById("pokemon-overview" + arrayId);
+function setBackgroundColor(elementId, array, arrayId){
+  const smallCardRef = document.getElementById(elementId + arrayId);
   smallCardRef.classList.add(array[arrayId].getBackgroundColor());
+  // battleCardRef.classList.add(array[arrayId].getBackgroundColor());
 }
 
 function renderTypesOnOverlay(array, arrayId){
@@ -83,9 +83,9 @@ function renderTypesOnOverlay(array, arrayId){
   }
 }
 
-function renderOverlay(array, arrayId){
+function renderOverlay(array, arrayId, elementId){
   renderSmallCard(array, arrayId);
-  setBackgroundColor(array, arrayId);
+  setBackgroundColor(elementId, array, arrayId);
   renderTypesOnOverlay(array, arrayId);
 }
 // #endregion
@@ -94,9 +94,7 @@ function renderOverlay(array, arrayId){
 function toggleBattleCard(index){
   const battleCardBgRef = document.getElementById("battlecard-bg");
   battleCardBgRef.classList.toggle("d-none");
-
-
-  const battleCardRef = document.getElementById("battlecard");
+  battleCardBgRef.innerHTML = getBattleCard();
 
   battleCardRef.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -140,7 +138,7 @@ function searchPokemon(){
     console.log(results);
     overlayRef.innerHTML = "";
     for (let resultId = 0; resultId < results.length; resultId++){
-      renderOverlay(results, resultId);
+      renderOverlay(results, resultId, "pokemon-overview");
     }
     // message, wenn kein Ergebnis
     if (results.length == 0){
@@ -151,7 +149,7 @@ function searchPokemon(){
     // zurück zur Ursprünglichen, wenn input wieder leer ist
     overlayRef.innerHTML = "";
     for (let pokeId = 0; pokeId < pokemonData.length; pokeId++){
-      renderOverlay(pokemonData, pokeId);
+      renderOverlay(pokemonData, pokeId, "pokemon-overview");
     }
   }
 
