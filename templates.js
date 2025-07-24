@@ -76,32 +76,32 @@ function getBattleCard(arrayId, array) {
                             <tr>
                             <td>HP</td>
                             <td id="hpstat">${array[arrayId].basestats.hp}</td>
-                            <td id="hpbar"><div style="width: calc(1.4 * ${array[arrayId].basestats.hp}px)"></div></td>
+                            <td id="hpbar"><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.hp}px)"></div></td>
                         </tr>
                         <tr>
                             <td>Attack</td>
                             <td id="attackstat">${array[arrayId].basestats.attack}</td>
-                            <td id="attackbar"><div style="width: calc(1.4 * ${array[arrayId].basestats.attack}px)"></div></td>
+                            <td id="attackbar"><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.attack}px)"></div></td>
                         </tr>
                         <tr>
                             <td>Defense</td>
                             <td id="defensestat">${array[arrayId].basestats.defense}</td>
-                            <td id="defensebar"><div style="width: calc(1.4 * ${array[arrayId].basestats.defense}px)"></div></td>
+                            <td id="defensebar"><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.defense}px)"></div></td>
                         </tr>
                         <tr>
                             <td>Spec.Attack</td>
                             <td id="spec-att-stat">${array[arrayId].basestats.specAttack}</td>
-                            <td id="spec-att-bar"><div style="width: calc(1.4 * ${array[arrayId].basestats.specAttack}px)"></div></td>
+                            <td id="spec-att-bar"><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.specAttack}px)"></div></td>
                         </tr>
                         <tr>
                             <td>Spec.Defense</td>
                             <td id="">${array[arrayId].basestats.specDefense}</td>
-                            <td id=""><div style="width: calc(1.4 * ${array[arrayId].basestats.specDefense}px)"></div></td>
+                            <td id=""><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.specDefense}px)"></div></td>
                         </tr>
                         <tr>
                             <td>Speed</td>
                             <td id="speedstat">${array[arrayId].basestats.speed}</td>
-                            <td id="speedbar"><div style="width: calc(1.4 * ${array[arrayId].basestats.speed}px)"></div></td>
+                            <td id="speedbar"><div style="width: calc(147 / ${array[arrayId].findMaxOfBaseStat()} * ${array[arrayId].basestats.speed}px)"></div></td>
                         </tr>
                         </table>
                     </section>

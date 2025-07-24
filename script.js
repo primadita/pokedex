@@ -66,8 +66,8 @@ async function loadPokemons(apiStartId, destinationArray) {
       .catch((error) => {
         console.error(error);
       });
-    hideSpinner();
   }
+  hideSpinner();
 }
 
 function renderSmallCard(array, arrayId) {

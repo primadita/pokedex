@@ -80,6 +80,11 @@ class Pokemon {
     return this.height;
   }
 
+  findMaxOfBaseStat() {
+    const basestatsValues = Object.values(this.basestats);
+    return Math.max(...basestatsValues);
+  }
+
   getBackgroundColor() {
     switch (this.types[0]) {
       case "normal":
