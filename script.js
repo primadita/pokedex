@@ -12,46 +12,52 @@ async function getEachPokemonData(index) {
   try {
     let dataOne = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}#`);
     let dataOneAsJson = await dataOne.json();
-    let pokeTypes = [];
-    let pokeAbilities = [];
 
     let dataTwo = await fetch(
       `https://pokeapi.co/api/v2/pokemon-species/${index}/`
     );
     let dataTwoAsJson = await dataTwo.json();
 
-    for (let k = 0; k < dataOneAsJson.types.length; k++) {
-      pokeTypes.push(`${dataOneAsJson.types[k].type.name}`);
-    }
-    for (let j = 0; j < dataOneAsJson.abilities.length; j++) {
-      pokeAbilities.push(`${dataOneAsJson.abilities[j].ability.name}`);
-    }
-    const pokemon = new Pokemon({
-      pName: `${dataOneAsJson.name}`,
-      pDefSprite: `${dataOneAsJson.sprites.other["official-artwork"].front_default}`,
-      pShinySprite: `${dataOneAsJson.sprites.other["official-artwork"].front_shiny}`,
-      pId: `${dataOneAsJson.id}`,
-      pDesc: `${dataTwoAsJson.flavor_text_entries[6].flavor_text}`,
-      pColor: `${dataTwoAsJson.color.name}`,
-      pHabitat: `${dataTwoAsJson.habitat.name}`,
-      pHeight: `${dataOneAsJson.height}`,
-      pGeneration: `${dataTwoAsJson.generation.name}`,
-      pGrowthRate: `${dataTwoAsJson.growth_rate.name}`,
-      pBaseStats: {
-        hp: `${dataOneAsJson.stats[0].base_stat}`,
-        attack: `${dataOneAsJson.stats[1].base_stat}`,
-        defense: `${dataOneAsJson.stats[2].base_stat}`,
-        specAttack: `${dataOneAsJson.stats[3].base_stat}`,
-        specDefense: `${dataOneAsJson.stats[4].base_stat}`,
-        speed: dataOneAsJson.stats[5].base_stat,
-      },
-      pTypes: pokeTypes,
-      pAbilities: pokeAbilities,
-    });
-    pokemonData.push(pokemon);
+    registerPokemon(dataOneAsJson, dataTwoAsJson, pokemonData);
+
   } catch (error) {
     console.error;
   }
+}
+
+function registerPokemon(jsonOne, jsonTwo, destinationArray){
+  let pokeTypes = [];
+  let pokeAbilities = [];
+
+  for (let k = 0; k < jsonOne.types.length; k++) {
+    pokeTypes.push(`${jsonOne.types[k].type.name}`);
+  }
+  for (let j = 0; j < jsonOne.abilities.length; j++) {
+    pokeAbilities.push(`${jsonOne.abilities[j].ability.name}`);
+  }
+  const pokemon = new Pokemon({
+    pName: `${jsonOne.name}`,
+    pDefSprite: `${jsonOne.sprites.other["official-artwork"].front_default}`,
+    pShinySprite: `${jsonOne.sprites.other["official-artwork"].front_shiny}`,
+    pId: `${jsonOne.id}`,
+    pDesc: `${jsonTwo.flavor_text_entries[6].flavor_text}`,
+    pColor: `${jsonTwo.color.name}`,
+    pHabitat: `${jsonTwo.habitat.name}`,
+    pHeight: `${jsonOne.height}`,
+    pGeneration: `${jsonTwo.generation.name}`,
+    pGrowthRate: `${jsonTwo.growth_rate.name}`,
+    pBaseStats: {
+      hp: `${jsonOne.stats[0].base_stat}`,
+      attack: `${jsonOne.stats[1].base_stat}`,
+      defense: `${jsonOne.stats[2].base_stat}`,
+      specAttack: `${jsonOne.stats[3].base_stat}`,
+      specDefense: `${jsonOne.stats[4].base_stat}`,
+      speed: jsonOne.stats[5].base_stat,
+    },
+    pTypes: pokeTypes,
+    pAbilities: pokeAbilities,
+  });
+  destinationArray.push(pokemon);
 }
 
 async function loadPokemons(apiStartId, destinationArray) {
