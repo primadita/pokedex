@@ -126,15 +126,22 @@ function renderBattleCard(index, array) {
   });
 }
 
-function forwardBattleCard(index, array) {
+async function forwardBattleCard(index, array) {
   if (index < array.length - 1) {
     renderBattleCard(index + 1, array);
+  } else {
+    showSpinner();
+    await loadPokemons(apiNextId, pokemonData);
+    renderBattleCard(index + 1, array);
+    hideSpinner();
   }
 }
 
 function backwardBattleCard(index, array) {
   if (index - 1 >= 0) {
     renderBattleCard(index - 1, array);
+  } else {
+    document.getElementById("backward-btn0").classList.add("d-hidden");
   }
 }
 
@@ -185,7 +192,7 @@ function searchPokemon() {
       const loadmoreBtnRef = document.getElementById("loadmore-btn");
       loadmoreBtnRef.classList.add("d-none");
     }
-  } else {
+  } else if (inputValue.length == 0) {
     // zurück zur Ursprünglichen, wenn input wieder leer ist
     overlayRef.innerHTML = "";
     for (let pokeId = 0; pokeId < pokemonData.length; pokeId++) {

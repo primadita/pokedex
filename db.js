@@ -71,8 +71,8 @@ class Pokemon {
   }
 
   replaceText() {
-    this.description = this.description.replace("\n", "");
-    this.description = this.description.replace("\f", "");
+    this.description = this.description.replace("\n", " ");
+    this.description = this.description.replace("\f", " ");
     return this.description;
   }
   getCorrectHeight() {

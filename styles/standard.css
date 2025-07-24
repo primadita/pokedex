@@ -35,6 +35,9 @@ footer {
 .d-none {
   display: none;
 }
+.d-hidden{
+    visibility: hidden;
+}
 .no-vertical-scroll {
   overflow-y: hidden;
 }
