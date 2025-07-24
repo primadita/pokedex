@@ -4,6 +4,7 @@ let apiStartId = 1;
 let apiNextId;
 const overlayRef = document.getElementById("overlay");
 const battleCardBgRef = document.getElementById("battlecard-bg");
+const loadmoreBtnRef = document.getElementById("loadmore-btn");
 // #endregion
 
 // #region OVERLAY
@@ -102,7 +103,7 @@ function toggleBattleCard(index, array) {
   document.body.classList.toggle("no-vertical-scroll");
 }
 
-function toggleOverview(){
+function toggleOverview() {
   battleCardBgRef.classList.toggle("d-none");
   document.body.classList.toggle("no-vertical-scroll");
 }
@@ -177,28 +178,38 @@ function hideSpinner() {
 function searchPokemon() {
   const searchRef = document.getElementById("search-input");
   inputValue = searchRef.value;
-
+  const results = filterPokemonName(inputValue);
   if (inputValue.length >= 3) {
-    const results = pokemonData.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(inputValue)
-    );
-    overlayRef.innerHTML = "";
-    for (let resultId = 0; resultId < results.length; resultId++) {
-      renderOverlay(results, resultId, "pokemon-overview");
-    }
-    // message, wenn kein Ergebnis
+    hideLoadMoreButton();
+    renderSearchResult(results);
     if (results.length == 0) {
-      overlayRef.innerHTML = showNoResultMessage();
-      const loadmoreBtnRef = document.getElementById("loadmore-btn");
-      loadmoreBtnRef.classList.add("d-none");
+      overlayRef.innerHTML += showNoResultMessage();
     }
   } else if (inputValue.length == 0) {
-    // zurück zur Ursprünglichen, wenn input wieder leer ist
-    overlayRef.innerHTML = "";
-    for (let pokeId = 0; pokeId < pokemonData.length; pokeId++) {
-      renderOverlay(pokemonData, pokeId, "pokemon-overview");
-    }
+    showLoadMoreButton();
+    renderSearchResult(results);
   }
 }
-// #endregion
 
+function filterPokemonName(input) {
+  const results = pokemonData.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(input)
+  );
+  return results;
+}
+
+function renderSearchResult(resultsArr) {
+  overlayRef.innerHTML = "";
+  for (let i = 0; i < resultsArr.length; i++) {
+    renderOverlay(pokemonData, resultsArr[i].id - 1, "pokemon-overview");
+  }
+}
+
+function hideLoadMoreButton() {
+  loadmoreBtnRef.classList.add("d-none");
+}
+
+function showLoadMoreButton() {
+  loadmoreBtnRef.classList.remove("d-none");
+}
+// #endregion 
