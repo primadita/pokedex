@@ -105,6 +105,11 @@ main {
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       border-radius: 2rem;
+      background-image: url("./assets/icons/pokeball-white_op18.png");
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-blend-mode: color-dodge;
+      background-position: bottom -7rem right -7rem;
       padding: 1.5rem;
       width: 30rem;
       height: 25rem;
@@ -129,6 +134,8 @@ main {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgba(36, 37, 39, 0.35) -6px -8px 6px 0px inset;
+      width: 32rem;
+      height: 27rem;
     }
   }
   #loadmore-btn {
@@ -216,9 +223,6 @@ main {
         text-align: left;
         top: 7.5rem;
         color: white;
-        /* @media (max-width: 350px) {
-          padding-top: 3rem;
-        } */
       }
       h1 {
         color: white;
@@ -226,9 +230,6 @@ main {
         top: 18rem;
         z-index: 10;
         padding-left: 16px;
-        /* @media (max-width: 350px) {
-          padding-top: 3rem;
-        } */
       }
       @media (max-width: 350px) {
         h1,h3{
@@ -313,6 +314,8 @@ main {
 .active-tab {
   border-bottom: 2px solid rgb(71, 68, 68);
 }
+/* #endregion */
+
 /* #region SPINNER */
 .spinner {
   border: none;
@@ -378,7 +381,7 @@ footer {
   background: #ee8130;
 }
 .water {
-  background: #6390f0;
+  background: #6390f0; 
 }
 .electric {
   background: #f7d02c;
