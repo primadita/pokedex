@@ -169,12 +169,10 @@ function switchTab(destinationSection) {
 // #endregion
 
 // #region SPINNER
-// Spinner anzeigen
 function showSpinner() {
   document.getElementById("spinner").style.display = "flex";
 }
 
-// Spinner ausblenden
 function hideSpinner() {
   document.getElementById("spinner").style.display = "none";
 }

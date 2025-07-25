@@ -216,6 +216,9 @@ main {
         text-align: left;
         top: 7.5rem;
         color: white;
+        /* @media (max-width: 350px) {
+          padding-top: 3rem;
+        } */
       }
       h1 {
         color: white;
@@ -223,6 +226,14 @@ main {
         top: 18rem;
         z-index: 10;
         padding-left: 16px;
+        /* @media (max-width: 350px) {
+          padding-top: 3rem;
+        } */
+      }
+      @media (max-width: 350px) {
+        h1,h3{
+          padding-top: 2rem;
+        }  
       }
       #info {
         background: white;
@@ -234,6 +245,9 @@ main {
         display: flex;
         flex-direction: column;
         padding: 0;
+        @media (max-width: 350px) {
+          bottom: calc(-385px + 1rem);
+        }
         img {
           opacity: 100%;
           width: 180px;
@@ -241,6 +255,9 @@ main {
           position: absolute;
           top: -160px;
           left: 130px;
+          @media (max-width: 350px) {
+            top: calc(-160px + 2rem)
+          }
         }
         #tab {
           width: 100%;
